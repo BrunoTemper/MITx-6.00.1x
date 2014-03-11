@@ -1,3 +1,5 @@
+import string
+
 def isWordGuessed(secretWord, lettersGuessed):
     '''
     secretWord: string, the word the user is guessing
@@ -29,6 +31,23 @@ def getGuessedWord(secretWord, lettersGuessed):
         guessedWord+=str(guessedSoFar[char])
 
     return guessedWord
-            
 
+def getAvailableLetters(lettersGuessed):
+    '''
+    lettersGuessed: list, what letters have been guessed so far
+    returns: string, comprised of letters that represents what letters have not
+      yet been guessed.
+    '''
+    letters = string.ascii_lowercase
+    availableLetters = []
 
+    for l in letters:
+        if l in lettersGuessed:
+            pass
+        else:
+            availableLetters.append(l)
+
+    letters = ""
+    for char in range(len(availableLetters)):
+        letters+=str(availableLetters[char])
+    return letters
