@@ -1,5 +1,15 @@
 import string
 
+def listToString(list):
+    '''
+    list: list of characters guessed or letters available
+    returns: string
+    '''
+    outString = ""
+    for char in range(len(list)):
+        outString+=str(list[char])
+    return outString
+    
 def isWordGuessed(secretWord, lettersGuessed):
     '''
     secretWord: string, the word the user is guessing
@@ -22,15 +32,11 @@ def getGuessedWord(secretWord, lettersGuessed):
     guessedSoFar = []
     for l in range(len(secretWord)):
         if (secretWord[l] in lettersGuessed):
-            guessedSoFar.append(secretWord[l])
+            guessedSoFar.append(secretWord[l]+" ")
         else:
             guessedSoFar.append("_ ")
 
-    guessedWord = ""
-    for char in range(len(guessedSoFar)):
-        guessedWord+=str(guessedSoFar[char])
-
-    return guessedWord
+    return listToString(guessedSoFar)
 
 def getAvailableLetters(lettersGuessed):
     '''
@@ -47,7 +53,4 @@ def getAvailableLetters(lettersGuessed):
         else:
             availableLetters.append(l)
 
-    letters = ""
-    for char in range(len(availableLetters)):
-        letters+=str(availableLetters[char])
-    return letters
+    return listToString(availableLetters)
