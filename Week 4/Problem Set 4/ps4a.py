@@ -76,7 +76,20 @@ def getWordScore(word, n):
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     returns: int >= 0
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    score = 0
+    
+    for letter in range(len(word)):
+        # add up the scores according to Scabble values
+        score += SCRABBLE_LETTER_VALUES[word[letter]]
+
+    #multiply score by length of word
+    score *= len(word)
+
+    # add 50 bonus points if all letters used
+    if (n == len(word)):
+        score += 50
+
+    return score
 
 
 
@@ -147,9 +160,12 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    handCopy = hand.copy()
+    for letter in range(len(word)):
+        if (word[letter] in handCopy.keys()) and (handCopy[word[letter]] > 0):
+            handCopy[word[letter]] -= 1
 
-
+    return handCopy
 
 #
 # Problem #3: Test word validity
