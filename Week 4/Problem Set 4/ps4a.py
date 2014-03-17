@@ -181,7 +181,25 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    # make copy of hand to decrement number of letters in hand
+    handCopy = hand.copy()
+
+    # loop through each letter in the word...
+    for letter in range(len(word)):
+
+        # ... and check if letter exists in hand and has value of more than 0
+        if (word[letter] in handCopy.keys()) and (word[letter] != '') and (handCopy[word[letter]] > 0):
+
+            # substract 1 from number of available letters in hand
+            handCopy[word[letter]] -= 1
+        else:
+            return False
+        
+    # check if the full word exists in the wordList list
+    if (word in wordList):
+        return True
+    else:
+        return False
 
 
 #
