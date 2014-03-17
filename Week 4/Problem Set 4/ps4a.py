@@ -16,11 +16,8 @@ SCRABBLE_LETTER_VALUES = {
     'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 's': 1, 't': 1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10
 }
 
-# -----------------------------------
-# Helper code
-# (you don't need to understand this helper code)
-
 WORDLIST_FILENAME = "words.txt"
+
 
 def loadWords():
     """
@@ -113,9 +110,7 @@ def displayHand(hand):
              print letter,              # print all on the same line
     print                               # print an empty line
 
-#
-# Problem #2: Make sure you understand how this function works and what it does!
-#
+
 def dealHand(n):
     """
     Returns a random hand containing n lowercase letters.
@@ -141,9 +136,7 @@ def dealHand(n):
         
     return hand
 
-#
-# Problem #2: Update a hand by removing letters
-#
+
 def updateHand(hand, word):
     """
     Assumes that 'hand' has all the letters in word.
@@ -167,9 +160,7 @@ def updateHand(hand, word):
 
     return handCopy
 
-#
-# Problem #3: Test word validity
-#
+
 def isValidWord(word, hand, wordList):
     """
     Returns True if word is in the wordList and is entirely
@@ -201,10 +192,6 @@ def isValidWord(word, hand, wordList):
     else:
         return False
 
-
-#
-# Problem #4: Playing a hand
-#
 
 def calculateHandlen(hand):
     """ 
@@ -284,8 +271,6 @@ def playHand(hand, wordList, n):
             print ("Goodbye! Total score: " + str(totalScore))
             break
     
-
-
 #
 # Problem #5: Playing a game
 # 
@@ -302,10 +287,24 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this line when you code the function
-   
+    n = HAND_SIZE
+    firstGame = True
 
+    while(True):
+        menu = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        
+        if (menu=="r") and (firstGame):
+            print("You have not played a hand yet. Please play a new hand first!")
+        elif (menu=="r") and not (firstGame):
+            playHand(hand, wordList, n)
+        elif (menu=="n"):
+            hand = dealHand(n)
+            playHand(hand, wordList, n)
+            firstGame = False
+        elif (menu=="e"):
+            break
+        else:
+            print ("Invalid command.")
 
 
 #
