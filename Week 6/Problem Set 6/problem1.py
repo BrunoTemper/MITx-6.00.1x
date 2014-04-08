@@ -11,7 +11,34 @@ def buildCoder(shift):
     buildCoder(3) = {'A': 'D', 'C': 'F', 'B': 'E', 'E': 'H', 'D': 'G', 'G': 'J', 'F': 'I', 'I': 'L', 'H': 'K', 'K': 'N', 'J': 'M', 'M': 'P', 'L': 'O', 'O': 'R', 'N': 'Q', 'Q': 'T', 'P': 'S', 'S': 'V', 'R': 'U', 'U': 'X', 'T': 'W', 'W': 'Z', 'V': 'Y', 'Y': 'B', 'X': 'A', 'Z': 'C', 'a': 'd', 'c': 'f', 'b': 'e', 'e': 'h', 'd': 'g', 'g': 'j', 'f': 'i', 'i': 'l', 'h': 'k', 'k': 'n', 'j': 'm', 'm': 'p', 'l': 'o', 'o': 'r', 'n': 'q', 'q': 't', 'p': 's', 's': 'v', 'r': 'u', 'u': 'x', 't': 'w', 'w': 'z', 'v': 'y', 'y': 'b', 'x': 'a', 'z': 'c'}
     
     """
-    ### TODO 
+    import string
+    letters = string.ascii_uppercase + string.ascii_lowercase
+    uppercase = string.ascii_uppercase
+    lowercase = string.ascii_lowercase
+
+    # return object for Caesar cipher dictionary
+    cipher = {}
+    index = 0
+
+    for l in letters:
+        if (l in uppercase):
+            if (shift + index > 51):
+                cipher[l] = uppercase[shift+index-52]
+            elif (shift+index > 25):
+                cipher[l] = uppercase[shift+index-26]
+            else:
+                cipher[l] = uppercase[shift+index]
+        elif (l in lowercase):
+            if (shift + index > 51):
+                cipher[l] = lowercase[shift+index-52]
+            elif (shift+index > 25):
+                cipher[l] = lowercase[shift+index-26]
+            else:
+                cipher[l] = lowercase[shift+index]
+        index += 1
+
+    return cipher
+     
 
 def applyCoder(text, coder):
     """
