@@ -54,7 +54,18 @@ def applyCoder(text, coder):
     >>> applyCoder("Khoor, zruog!", buildCoder(23))
     'Hello, world!'
     """
-    ### TODO
+    
+    import string
+    letters = string.ascii_uppercase + string.ascii_lowercase
+    
+    encrypted = ""
+    
+    for l in text:
+        if l in letters:
+            encrypted += coder[l]
+        else:
+            encrypted += l
+    return encrypted
 
 
 def applyShift(text, shift):
@@ -75,5 +86,4 @@ def applyShift(text, shift):
     'This is a test.'
     
     """
-    ### TODO.
-    ### HINT: This is a wrapper function.
+    return applyCoder(text, buildCoder(shift))
